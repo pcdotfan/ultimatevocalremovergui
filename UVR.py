@@ -12,7 +12,7 @@ import onnx
 import os
 import pickle  # Save Data
 import psutil
-from pyglet import font
+from pyglet import font as pfont
 import pyperclip
 import base64
 import queue
@@ -886,7 +886,7 @@ class MainWindow(TkinterDnD.Tk if is_dnd_compatible else tk.Tk):
         self.active_download_thread = None
 
         # Font
-        font.add_file(FONT_PATH)
+        pfont.add_file(FONT_PATH)
         self.font = tk.font.Font(family=MAIN_FONT_NAME, size=FONT_SIZE_F1)
         self.font_smaller = tk.font.Font(family=MAIN_FONT_NAME, size=FONT_SIZE_F2)
         self.fontRadio = tk.font.Font(family=MAIN_FONT_NAME, size=FONT_SIZE_F3) 
@@ -1686,7 +1686,7 @@ class MainWindow(TkinterDnD.Tk if is_dnd_compatible else tk.Tk):
         
         return model, sources
   
-    def cached_source_model_list_check(self, model_list: list[ModelData]):
+    def cached_source_model_list_check(self, model_list: List[ModelData]):
 
         model: ModelData
         primary_model_names = lambda process_method:[model.model_basename if model.process_method == process_method else None for model in model_list]
